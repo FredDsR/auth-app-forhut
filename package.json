@@ -1,0 +1,22 @@
+{
+  "name": "userauth",
+  "version": "1.0.0",
+  "description": "Simple user CRUD and authentication",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Frederico Reckziegel",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "jwt-simple": "^0.5.6",
+    "mongoose": "^5.7.5",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0"
+  }
+}
