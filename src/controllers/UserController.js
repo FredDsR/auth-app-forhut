@@ -11,7 +11,7 @@ module.exports = {
             return res.status(400).json({ error });
         });
 
-        return res.json(users);
+        return res.json(users).send();
     },
 
     async store(req, res) {
