@@ -35,7 +35,6 @@ module.exports = {
                 bio
             }).then(res => {
                 user.username = res.username;
-                user.password = res.password;
                 user.bio = res.bio;
             }).catch(error => {
                 res.status(400).json({ error });
@@ -81,8 +80,8 @@ module.exports = {
                 console.log(err);
             });
 
-            await User.updateOne({_id : req.usei.id}, {password: hash}).then(() => {
-                user.password = hash;
+            await User.updateOne({_id : req.user.id}, {password: hash}).then(() => {
+                user.password = 'Changed';
             }).catch(error => {
                 console.log(error);
             })
@@ -104,7 +103,7 @@ module.exports = {
     async login(req, res){
         const { username, password } = req.body;
         if (username && password) {
-            const user = await User.findOne({username: username}).catch(error => {
+            const user = await User.findOne({username: username}).select('+password').catch(error => {
                 console.log(error);
             });
 
@@ -114,7 +113,6 @@ module.exports = {
                     const payload = {id: user._id};
                     const token = jwt.encode(payload, process.env.JWT_SECRET);
                     res.json({
-                        user: user,
                         token: token
                     });
                 }else{
