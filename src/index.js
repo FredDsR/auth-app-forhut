@@ -11,6 +11,7 @@ const app = express();
 
 const server = require('http').Server(app);
 
+console.log(process.env.DB_CONNECTION);
 mongoose.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,
     useUnifiedTopology: true
