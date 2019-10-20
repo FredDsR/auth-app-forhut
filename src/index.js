@@ -14,6 +14,8 @@ const server = require('http').Server(app);
 mongoose.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,
     useUnifiedTopology: true
+}).catch(err => {
+    console.log('Error mogoose conection: ' + err);
 });
 
 app.use(bodyParser.json());
