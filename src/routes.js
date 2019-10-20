@@ -5,6 +5,9 @@ const auth = require('./auth');
 
 const routes = new express.Router();
 
+routes.get('/', (req, res) => {
+    res.redirect('/user');
+});
 routes.get('/user', UserController.index);
 routes.get('/user/:id', UserController.view);
 routes.post('/user', UserController.store);
