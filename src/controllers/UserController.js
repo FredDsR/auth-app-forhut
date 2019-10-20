@@ -8,7 +8,8 @@ require('dotenv').config();
 module.exports = {
     async index(req, res) {
         const users = await User.find().catch(error => {
-            return res.status(400).json({ error });
+            console.log(error);
+            return res.status(400).send('Mongoose error');
         });
 
         return res.status(200).json({users: users});
