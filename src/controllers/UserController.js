@@ -105,7 +105,7 @@ module.exports = {
         const { username, password } = req.body;
         if (username && password) {
             const user = await User.findOne({username: username}).select('+password').catch(error => {
-                console.log(error);
+                res.status(401);
             });
 
             if (user) {
