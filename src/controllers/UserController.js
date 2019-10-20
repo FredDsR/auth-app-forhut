@@ -105,7 +105,7 @@ module.exports = {
         const { username, password } = req.body;
         if (username && password) {
             const user = await User.findOne({username: username}).select('+password').catch(error => {
-                res.status(401);
+                console.log(error);
             });
 
             if (user) {
@@ -113,17 +113,17 @@ module.exports = {
                 if (checkPass) {
                     const payload = {id: user._id};
                     const token = jwt.encode(payload, process.env.JWT_SECRET);
-                    res.json({
+                    return res.json({
                         token: token
                     });
                 }else{
-                    res.status(401);
+                    return res.status(401).send("Incorrect password");
                 }
             }else{
-                res.status(401);
+                return res.status(401).send("User not found");
             }
         }else{
-            res.status(401);
+            return res.status(401).send("Unauthorized");
         }
     }
 };
